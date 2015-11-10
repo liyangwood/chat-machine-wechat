@@ -191,6 +191,55 @@
           }
         }
       }
+    },
+    "xml2json": {
+      "version": "0.9.0",
+      "dependencies": {
+        "hoek": {
+          "version": "2.16.3"
+        },
+        "joi": {
+          "version": "6.10.0",
+          "dependencies": {
+            "topo": {
+              "version": "1.1.0"
+            },
+            "isemail": {
+              "version": "1.2.0"
+            },
+            "moment": {
+              "version": "2.10.6"
+            }
+          }
+        },
+        "node-expat": {
+          "version": "2.3.11",
+          "dependencies": {
+            "bindings": {
+              "version": "1.2.1"
+            },
+            "debug": {
+              "version": "2.2.0",
+              "dependencies": {
+                "ms": {
+                  "version": "0.7.1"
+                }
+              }
+            },
+            "iconv": {
+              "version": "2.1.11",
+              "dependencies": {
+                "nan": {
+                  "version": "2.0.9"
+                }
+              }
+            },
+            "nan": {
+              "version": "2.1.0"
+            }
+          }
+        }
+      }
     }
   }
 }
