@@ -184,6 +184,12 @@ console.log(rs);
             //<error><ret>0</ret><message>OK</message><skey>@crypt_de480f64_a838cbcae7083430940852f02cc2eaee</skey><wxsid>3H96gkbqhhzIARU1</wxsid><wxuin>2919136513</wxuin><pass_ticket>FnVkCuGvemRMbBmYN7tkD%2Bm%2FUqwh6%2Bbz3ULOFvxjM09ZplOM6ML1EwzLPK3166qS</pass_ticket><isgrayscale>1</isgrayscale></error>
         },
 
+        //获得所有的好友列表
+        getAllFriendsList : function(){
+            // https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxgetcontact?r=1377482079876
+            var url = '/mmwebwx-bin/webwxgetcontact?r='+Date.now();
+        },
+
         getWeixinInitData : function(){
             // step 3 通过2获得的信息获取初始化的聊天信息
             //var url = 'https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit?r=296514303&pass_ticket=FnVkCuGvemRMbBmYN7tkD%252Bm%252FUqwh6%252Bbz3ULOFvxjM09ZplOM6ML1EwzLPK3166qS';
@@ -326,14 +332,138 @@ console.log(rs);
                 //F.setCookie(res.headers['set-cookie']);
                 F.setSyncKey(body.SyncKey);
 
-                console.log(body);
+                F.process(body);
+
                 F.loopCheckNewChats();
 
+            });
+        },
+
+        /*
+        * 处理收到的微信信息
+        *
+        *
+        * AddMsgCount: 1
+         AddMsgList: [{MsgId: "1079390175004031806", FromUserName: "@0b341ffd27e42cf94f79c85c0e219b68",…}]
+         BaseResponse: {Ret: 0, ErrMsg: ""}
+         ContinueFlag: 0
+         DelContactCount: 0
+         DelContactList: []
+         ModChatRoomMemberCount: 0
+         ModChatRoomMemberList: []
+         ModContactCount: 0
+         ModContactList: []
+         Profile: {BitFlag: 0, UserName: {Buff: ""}, NickName: {Buff: ""}, BindUin: 0, BindEmail: {Buff: ""},…}
+         SKey: ""
+         SyncKey: {Count: 7, List: [{Key: 1, Val: 633870671}, {Key: 2, Val: 633872001}, {Key: 3, Val: 633871164},…]}
+        *
+        * */
+        process : function(json){
+            if(json.AddMsgCount > 0){
+                chat.dealChatMessage(json.AddMsgList);
+            }
+        },
+
+
+        /*
+        * https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxsendmsg?lang=zh_CN&pass_ticket=Ff9HMOc%252FMlQVcIqJFUGI1ZQeOwAUsaAEL3Auhzr2NncrwvkgkUBROevDuM2zr8h0
+        * */
+        sendMessage : function(opts, callback){
+            var url = '/mmwebwx-bin/webwxsendmsg?lang=zh_CN&pass_ticket='+wx.pass_ticket;
+
+            var localId = _.random(100000000000, 999999999999);
+
+            var data = {
+                BaseRequest : {
+                    DeviceID: wx.device(),
+                    Sid: wx.wxsid,
+                    Skey: wx.skey,
+                    Uin: wx.wxuin
+                },
+                Msg : {
+                    ClientMsgId : localId,
+                    Content: opts.Content,
+                    FromUserName: opts.FromUserName,
+                    LocalID: localId,
+                    ToUserName: opts.ToUserName,
+                    Type: opts.type
+                }
+            };
+
+            request(F.setOption({
+                url : wx.host+url,
+                method : 'POST',
+                json : true,
+                body : data
+            }), function(err, res, body){
+                callback(err, body);
             });
         }
 
 
 
+    };
+
+
+    // 所有数据处理部分
+    var chat = {
+        /*
+        * 处理收到的聊天信息
+        *
+        *AppInfo: {AppID: "", Type: 0}
+         AppMsgType: 0
+         Content: "å•Šå•Šå•Š"
+         CreateTime: 1447196477
+         FileName: ""
+         FileSize: ""
+         ForwardFlag: 0
+         FromUserName: "@0b341ffd27e42cf94f79c85c0e219b68"
+         HasProductId: 0
+         ImgHeight: 0
+         ImgStatus: 1
+         ImgWidth: 0
+         MediaId: ""
+         MsgId: "1079390175004031806"
+         MsgType: 1
+         NewMsgId: 1079390175004031700
+         PlayLength: 0
+         RecommendInfo: {UserName: "", NickName: "", QQNum: 0, Province: "", City: "", Content: "", Signature: "", Alias: "",…}
+         Status: 3
+         StatusNotifyCode: 0
+         StatusNotifyUserName: ""
+         SubMsgType: 0
+         Ticket: ""
+         ToUserName: "@e2ef8e126a69919edfae9f03201e2a79457092783ab9cf0c4a10307e76b91a53"
+         Url: ""
+         VoiceLength: 0
+        *
+        * */
+        dealChatMessage : function(msgList){
+            _.each(msgList, function(item){
+                chat.dealOneMessage(item);
+            });
+        },
+
+        dealOneMessage : function(msg){
+console.log(msg);
+            switch(msg.MsgType){
+                case 1:
+                    // text
+
+                    //测试，直接发信息给信息发送者
+                    F.sendMessage({
+                        type : 1,
+                        FromUserName : msg.ToUserName,
+                        ToUserName : msg.FromUserName,
+                        Content : '你发送的信息是 '+msg.Content
+                    }, function(err, rs){
+                        console.log(rs);
+                    });
+
+                    break;
+
+            }
+        }
     };
 
 
