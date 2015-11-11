@@ -24,7 +24,7 @@ underscore
 iron:router
 aldeed:simple-schema
 aldeed:collection2
-#meteorhacks:npm        # beacuse use mgp
+meteorhacks:npm
 
 
 npm-container
