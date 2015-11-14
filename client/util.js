@@ -14,7 +14,7 @@ util.ajax = function(opts){
         dataType : 'json',
         data : opts.data || {},
         success : function(rs){
-            if(rs.status === 'ok'){
+            if(rs.status > 0){
                 opts.success(true, rs.data);
             }
             else{
