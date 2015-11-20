@@ -19,9 +19,21 @@ Template.test.events({
         });
     },
 
-    'click, .js_btn1' : function(){
+    'click .js_btn1' : function(){
         util.ajax({
             url : '/api/news',
+            type : 'get',
+            dataType : 'json',
+            data : {},
+            success : function(flag, rs){
+                console.log(rs);
+            }
+        });
+    },
+
+    'click .js_btn2' : function(){
+        util.ajax({
+            url : '/api/test/getimg',
             type : 'get',
             dataType : 'json',
             data : {},

@@ -52,6 +52,16 @@ if(Meteor.isServer){
         });
     });
 
+    Router.route('testImageGet', {
+        where : 'server',
+        path : '/api/test/getimg'
+    }).get(function(){
+        var self = this;
+        wx.getTestImage('', function(name){
+            self.response.end(F.result(true, name));
+        });
+    });
+
 }
 
 
