@@ -1,5 +1,11 @@
 Template.GroupMessageList.helpers({
     list : function(){
-        return GroupMessage.find().fetch();
+        var sort = {
+            CreateTime : -1
+        };
+
+        return GroupMessage.find({}, {
+            sort : sort
+        }).fetch();
     }
 });

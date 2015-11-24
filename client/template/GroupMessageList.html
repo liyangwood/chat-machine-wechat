@@ -1,9 +1,18 @@
 <template name="GroupMessageList">
 
-    <ul>
+    <table class="table">
+        {{#each list}}
+        <tr>
+            <td>{{_id}}</td>
+            <td>{{nickname}}</td>
 
-
-
-    </ul>
+            {{#if equal MsgType 1}}
+                <td>{{Content}}</td>
+            {{else}}
+                <td><img src="/getweixinimage?id={{MsgId}}.png" style="width: 100px;" /></td>
+            {{/if}}
+        </tr>
+        {{/each}}
+    </table>
 
 </template>

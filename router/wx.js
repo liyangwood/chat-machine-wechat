@@ -82,7 +82,14 @@ if(Meteor.isServer){
         var fs = Meteor.npmRequire('fs');
         var path = process.env.PWD+'/temp/weixinlogimage/'+id;
 
-        self.response.end(fs.readFileSync(path));
+        try{
+            self.response.end(fs.readFileSync(path));
+        }
+        catch(e){
+            self.response.end('\n');
+        }
+
+
 
     });
 
