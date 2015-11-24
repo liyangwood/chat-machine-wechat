@@ -44,3 +44,11 @@ Router.route('/api/collectMessage', {where: 'server'}).get(function(){
 
 
 });
+
+Router.route('/group/message/list', {
+    name : 'GroupMessageList',
+    waitOn : function(){
+        return Meteor.subscribe('GroupMessage');
+    }
+
+});

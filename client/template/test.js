@@ -38,7 +38,13 @@ Template.test.events({
             dataType : 'json',
             data : {},
             success : function(flag, rs){
-                console.log(rs);
+                var img = new Image();
+                img.src = rs;
+                $(img).css({
+                    width : '100px'
+                });
+
+                $('body').append(img);
             }
         });
     }

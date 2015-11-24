@@ -57,9 +57,33 @@ if(Meteor.isServer){
         path : '/api/test/getimg'
     }).get(function(){
         var self = this;
-        wx.getTestImage('', function(name){
-            self.response.end(F.result(true, name));
+        wx.getTestImage('', function(err, file){
+            if(err){
+                self.response.end(F.result(false, err));
+                return;
+            }
+
+
+
+            self.response.end(F.result(true, '/getweixinimage?id='+file.name));
         });
+    });
+
+
+    Router.route('getTempImage', {
+        where : 'server',
+        path : '/getweixinimage'
+    }).get(function(){
+        var self = this;
+
+        var query = self.request.query,
+            id = query.id;
+
+        var fs = Meteor.npmRequire('fs');
+        var path = process.env.PWD+'/temp/weixinlogimage/'+id;
+
+        self.response.end(fs.readFileSync(path));
+
     });
 
 }
