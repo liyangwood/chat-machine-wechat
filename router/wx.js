@@ -93,6 +93,16 @@ if(Meteor.isServer){
 
     });
 
+    Router.route('getWxGroupList', {
+        where : 'server',
+        path : '/wx/group/getlist'
+    }).get(function(){
+        var group = wx.getGroupList();
+        var friend = wx.getFriendList();
+
+        this.response.end(F.result(true, [group, friend]));
+    });
+
 }
 
 

@@ -47,5 +47,17 @@ Template.test.events({
                 $('body').append(img);
             }
         });
+    },
+
+    'click .js_btn3' : function(){
+        util.ajax({
+            url : '/wx/group/getlist',
+            type : 'get',
+            dataType : 'json',
+            data : {},
+            success : function(flag, rs){
+                console.log(rs);
+            }
+        });
     }
 });
