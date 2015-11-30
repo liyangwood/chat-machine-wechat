@@ -22,10 +22,10 @@
     <div class="list-group">
 
         {{#each list}}
-        <div class="list-group-item">
-            <!--<img src="/getheadimage?id={{ToUserName}}" />-->
-            <h4 class="list-group-item-heading">{{nickname}}</h4>
-            <p>{{formatDate CreateTime}}</p>
+        <div class="list-group-item" style="position: relative;padding-left: 90px;min-height: 85px;">
+            <img style="width: 60px;height: 60px;position: absolute;top: 10px;left: 15px;" src="/getheadimage?id={{UserObject.UserName}}" />
+            <h4 class="list-group-item-heading">{{nickname}} <small style="float: right;">{{formatDate CreateTime}}</small></h4>
+
 
             {{#if equal MsgType 1}}
             <p class="list-group-item-text">{{Content}}</p>
