@@ -5,3 +5,8 @@ Template.registerHelper('equal', function(v1, v2) {
         return v1 === v2;
     }
 });
+
+Template.registerHelper('formatDate', function(date) {
+
+    return util.formatDate(date, 'yy-mm-dd h:m:s');
+});

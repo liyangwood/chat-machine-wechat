@@ -11,7 +11,7 @@ Router.route('/', {
     name: 'test',
     loadingTemplate : 'loading',
     waitOn : function(){
-        return Meteor.subscribe('BaseMessage');
+        //return Meteor.subscribe('BaseMessage');
     }
 });
 
@@ -51,4 +51,23 @@ Router.route('/group/message/list', {
         return Meteor.subscribe('GroupMessage');
     }
 
+});
+
+
+//qun start
+Router.route('/qun/add', {
+    name : 'AddZhiBo'
+});
+
+Router.route('/qun/list', {
+    name : 'ZhiBoList',
+    waitOn : function(){
+        return Meteor.subscribe('ZhiBo');
+    }
+});
+Router.route('/qun/:zhiboId/message', {
+    name : 'ZhiBoMessageList',
+    waitOn : function(){
+        return Meteor.subscribe('ZhiBoMessage');
+    }
 });

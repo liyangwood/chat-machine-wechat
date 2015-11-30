@@ -1,0 +1,43 @@
+<template name="ZhiBoList">
+
+    <div class="container">
+        <div class="list-group">
+
+            {{#each list}}
+            <a href="{{pathFor 'ZhiBoMessageList' zhiboId=_id}}" class="list-group-item">
+                <h4 class="list-group-item-heading">{{title}}</h4>
+                <p class="list-group-item-text">{{description}}</p>
+            </a>
+            {{/each}}
+
+        </div>
+    </div>
+
+
+</template>
+
+
+<template name="ZhiBoMessageList">
+
+    <div class="list-group">
+
+        {{#each list}}
+        <div class="list-group-item">
+            <!--<img src="/getheadimage?id={{ToUserName}}" />-->
+            <h4 class="list-group-item-heading">{{nickname}}</h4>
+            <p>{{formatDate CreateTime}}</p>
+
+            {{#if equal MsgType 1}}
+            <p class="list-group-item-text">{{Content}}</p>
+            {{/if}}
+
+            {{#if equal MsgType 3}}
+                <img src="/getweixinimage?id={{MsgId}}.png" />
+            {{/if}}
+
+        </div>
+        {{/each}}
+
+    </div>
+
+</template>

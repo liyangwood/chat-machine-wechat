@@ -70,7 +70,7 @@ if(Meteor.isServer){
     });
 
 
-    Router.route('getTempImage', {
+    Router.route('getLogImage', {
         where : 'server',
         path : '/getweixinimage'
     }).get(function(){
@@ -89,9 +89,37 @@ if(Meteor.isServer){
             self.response.end('\n');
         }
 
-
-
     });
+
+    Router.route('getHeadImage', {
+        where : 'server',
+        path : '/getheadimage'
+    }).get(function(){
+        var self = this;
+        var query = self.request.query,
+            id = query.id;
+
+        var fs = Meteor.npmRequire('fs');
+        var path = KG.config.pwd+'/temp/headimage/'+id+'.png';
+
+        try{
+            self.response.end(fs.readFileSync(path));
+        }
+        catch(e){
+            wx.getHeadImage(id, function(file){
+
+                try{
+                    self.response.end(fs.readFileSync(path));
+                }catch(ee){
+                    self.response.end('\n');
+                }
+
+            });
+
+            //self.response.end('\n');
+        }
+    });
+
 
     Router.route('getWxGroupList', {
         where : 'server',
