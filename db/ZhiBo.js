@@ -12,6 +12,15 @@ DB.ZhiBo.allow({
     }
 });
 
+DB.ZhiBoMessage.allow({
+    remove : function(){
+        return true;
+    },
+    insert : function(){
+        return true;
+    }
+});
+
 if(Meteor.isServer){
     Meteor.publish('ZhiBo', function(){
         return DB.ZhiBo.find();

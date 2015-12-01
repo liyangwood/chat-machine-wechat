@@ -1,0 +1,32 @@
+body {
+  background: #eeeeee; }
+
+#js_video {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 100px; }
+
+.kg-zhibo-list {
+  background: #eeeeee; }
+  .kg-zhibo-list .list-group-item {
+    background: transparent; }
+  .kg-zhibo-list .t-34 {
+    padding: 7px 13px;
+    width: 150px;
+    max-width: 300px;
+    cursor: pointer;
+    position: relative;
+    background: #ffffff; }
+    .kg-zhibo-list .t-34 .icon {
+      background: url("/image/weixinicon.png") 0 -2427px;
+      width: 23px;
+      height: 23px;
+      vertical-align: middle;
+      display: inline-block; }
+    .kg-zhibo-list .t-34 span {
+      float: right;
+      font-size: 14px;
+      color: #999; }
+
+/*# sourceMappingURL=main.css.map */
