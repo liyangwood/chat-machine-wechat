@@ -2,6 +2,20 @@ Template.test.helpers({
 
 });
 
+var F = {
+    addVideo : function(src){
+        var xx = $('#js_video');
+        if(xx.length < 1){
+            $('body').append('<video id="js_video" control autoplay></video>');
+
+            xx = $('#js_video');
+        }
+
+        xx.attr('src', src);
+        xx[0].play();
+    }
+};
+
 
 Template.test.events({
     'click .js_btn' : function(){
@@ -32,21 +46,9 @@ Template.test.events({
     },
 
     'click .js_btn2' : function(){
-        util.ajax({
-            url : '/api/test/getimg',
-            type : 'get',
-            dataType : 'json',
-            data : {},
-            success : function(flag, rs){
-                var img = new Image();
-                img.src = rs;
-                $(img).css({
-                    width : '100px'
-                });
+        var url = '/api/test/getimg';
 
-                $('body').append(img);
-            }
-        });
+        F.addVideo(url);
     },
 
     'click .js_btn3' : function(){

@@ -7,26 +7,31 @@ body {
   left: 0;
   top: 100px; }
 
+.active {
+  background: red !important; }
+
 .kg-zhibo-list {
   background: #eeeeee; }
   .kg-zhibo-list .list-group-item {
     background: transparent; }
-  .kg-zhibo-list .t-34 {
+  .kg-zhibo-list .t-34 .box {
     padding: 7px 13px;
     width: 150px;
     max-width: 300px;
     cursor: pointer;
     position: relative;
-    background: #ffffff; }
-    .kg-zhibo-list .t-34 .icon {
-      background: url("/image/weixinicon.png") 0 -2427px;
-      width: 23px;
-      height: 23px;
-      vertical-align: middle;
-      display: inline-block; }
-    .kg-zhibo-list .t-34 span {
-      float: right;
-      font-size: 14px;
-      color: #999; }
+    background: #ffffff;
+    display: inline-block; }
+  .kg-zhibo-list .t-34 .icon {
+    background: url("/image/weixinicon.png") 0 -2427px;
+    width: 23px;
+    height: 23px;
+    vertical-align: middle;
+    display: inline-block; }
+  .kg-zhibo-list .t-34 span {
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    left: 5px; }
 
 /*# sourceMappingURL=main.css.map */

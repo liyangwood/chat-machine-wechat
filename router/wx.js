@@ -192,8 +192,8 @@ Router.route('testImageGet', {
 }).get(function(){
     var self = this;
 
-    var id = 'f.png';
-    var path = KG.config.pwd+'/temp/weixinlogimage/'+id;
+    var id = 'a';
+    var path = KG.config.pwd+'/temp/weixinlogimage/'+id+'.mp4';
 
     try{
         self.response.end(fs.readFileSync(path));
@@ -202,7 +202,7 @@ Router.route('testImageGet', {
 
         wx.getTestImage(id, function(buffer){
 
-            Image.saveChatImage(id, buffer, function(err, file){
+            Image.saveChatVideo(id, buffer, function(err, file){
                 console.log(file);
                 Meteor.setTimeout(function(){
                     self.response.end(fs.readFileSync(path));

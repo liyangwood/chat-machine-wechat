@@ -36,15 +36,18 @@
             {{/if}}
 
             {{#if equal MsgType 34}}
-                <div class="t-34 js_voice" voice-id="{{MsgId}}" style="width:{{calculateT34Width VoiceLength}};">
-                    <i class="icon"></i>
-                    <span>{{VoiceLength}}</span>
+                <div class="t-34">
+                    <div class="js_voice box" voice-id="{{MsgId}}" voice-len="{{calculateT34Second VoiceLength}}" style="width:{{calculateT34Width VoiceLength}};">
+                        <i class="icon"></i>
+                    </div>
+                    <span>{{calculateT34Second VoiceLength}} '</span>
                 </div>
+
             {{/if}}
 
             {{#if equal MsgType 43}}
-                <img src="/weixin/log/image?id={{MsgId}}" />
-                <b class="js_videoplay" video-id="{{MsgId}}">播放</b>
+                <img style="width: 100px;" src="/weixin/log/image?id={{MsgId}}" />
+                <!--<b class="js_videoplay" video-id="{{MsgId}}">播放</b>-->
             {{/if}}
 
         </div>

@@ -10,6 +10,17 @@ var F = {
 
         xx.attr('src', src);
         xx[0].play();
+    },
+    addAudio : function(src){
+        var xx = $('#js_audio');
+        if(xx.length < 1){
+            $('body').append('<audio id="js_audio" autoplay></audio>');
+
+            xx = $('#js_audio');
+        }
+
+        xx.empty().append('<source src="'+src+'" type="audio/mpeg" />');
+        xx[0].play();
     }
 };
 
@@ -28,6 +39,9 @@ Template.ZhiBoList.helpers({
 Template.registerHelper('calculateT34Width', function(len){
     len = len || 4680;
     return (40+7*len/1000)+'px';
+});
+Template.registerHelper('calculateT34Second', function(len){
+    return Math.ceil(len/1000);
 });
 
 Template.ZhiBoMessageList.helpers({
@@ -49,11 +63,20 @@ Template.ZhiBoMessageList.helpers({
 
 Template.ZhiBoMessageList.events({
     'click .js_voice' : function(e){
-        var id = $(e.target).closest('.js_voice').attr('voice-id');
+        var elem = $(e.target).closest('.js_voice');
+        var id = elem.attr('voice-id'),
+            len = elem.attr('voice-len');
         var url = '/weixin/log/voice?id='+id;
         console.log(url);
 
         F.addAudio(url);
+
+        elem.addClass('active');
+
+        util.delay(function(){
+            elem.removeClass('active');
+        }, len*1000);
+
     },
 
     'click .js_videoplay' : function(e){

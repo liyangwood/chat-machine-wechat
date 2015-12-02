@@ -10,6 +10,10 @@ body{
 
 }
 
+.active{
+	background: red !important;
+}
+
 .kg-zhibo-list{
 	background: #eeeeee;
 
@@ -18,12 +22,17 @@ body{
 	}
 
 	.t-34{
-		padding: 7px 13px;
-		width: 150px;
-		max-width: 300px;
-		cursor: pointer;
-		position: relative;
-		background: #ffffff;
+
+		.box{
+			padding: 7px 13px;
+			width: 150px;
+			max-width: 300px;
+			cursor: pointer;
+			position: relative;
+			background: #ffffff;
+			display: inline-block;
+		}
+
 
 		.icon{
 			background: url('/image/weixinicon.png') 0 -2427px;
@@ -33,9 +42,10 @@ body{
 			display: inline-block;
 		}
 		span{
-			float: right;
 			font-size: 14px;
-			color: #999;
+			color: #666;
+			position: relative;
+			left: 5px;
 		}
 	}
 }
