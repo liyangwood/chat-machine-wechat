@@ -14,12 +14,59 @@ body{
 	background: red !important;
 }
 
+.container{
+	max-width: 960px;
+}
+
+
+
+@import "emote";
+
+/* common end */
+
+
+
+.kg-zhibo-list-info{
+	background: #fffe91;
+	
+	.col{
+		text-align: left;
+		font-size: 16px;
+		color: #111;
+	}
+}
+
 .kg-zhibo-list{
-	background: #eeeeee;
+	background: #eee;
 
 	.list-group-item{
 		background: transparent;
 	}
+
+	.txt{
+		white-space: normal;
+		word-break:break-all;
+		display: inline-block;
+		background: #ffffff;
+		padding: 8px 10px;
+		position: relative;
+		border-radius: 4px;
+		color: #111;
+		line-height: 22px;
+
+		em{
+			display: block;
+			position: absolute;
+			width: 0;
+			height: 0;
+			border: 8px solid;
+			border-color: transparent #ffffff transparent transparent;
+			top: 5px;
+			left: -16px;
+		}
+	}
+
+
 
 	.t-34{
 
@@ -31,6 +78,7 @@ body{
 			position: relative;
 			background: #ffffff;
 			display: inline-block;
+
 		}
 
 

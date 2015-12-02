@@ -19,16 +19,33 @@
 
 <template name="ZhiBoMessageList">
 
-    <div class="list-group kg-zhibo-list">
+    <div class="jumbotron kg-zhibo-list-info">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xs-2">标题</div>
+                <div class="col col-xs-10">{{info.title}}</div>
+            </div>
+            <div class="row">
+                <div class="col col-xs-2">状态</div>
+                <div class="col col-xs-10">进行中</div>
+            </div>
+            <div class="row">
+                <div class="col col-xs-2">描述</div>
+                <div class="col col-xs-10">{{info.description}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group kg-zhibo-list container">
 
         {{#each list}}
-        <div class="list-group-item" style="position: relative;padding-left: 90px;min-height: 85px;">
-            <img style="width: 60px;height: 60px;position: absolute;top: 10px;left: 15px;" src="/weixin/user/headimage?id={{UserObject.UserName}}" />
-            <h4 class="list-group-item-heading">{{nickname}} <small style="float: right;">{{formatDate CreateTime}}</small></h4>
+        <div class="list-group-item" style="position: relative;padding-left: 70px;min-height: 85px;border: none;">
+            <img style="width: 40px;height: 40px;position: absolute;top: 10px;left: 15px;border-radius: 4px;" src="/weixin/user/headimage?id={{UserObject.UserName}}" />
+            <h4 style="font-size: 14px;font-weight: 400;" class="list-group-item-heading">{{nickname}} <small style="">{{formatDate CreateTime}}</small></h4>
 
 
             {{#if equal MsgType 1}}
-            <p style="white-space: normal;word-break:break-all;" class="list-group-item-text">{{Content}}</p>
+            <p class="list-group-item-text txt"><em></em>{{{formatEmote Content}}}</p>
             {{/if}}
 
             {{#if equal MsgType 3}}

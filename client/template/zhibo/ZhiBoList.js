@@ -57,6 +57,14 @@ Template.ZhiBoMessageList.helpers({
         return DB.ZhiBoMessage.find(query, {
             sort : sort
         }).fetch();
+    },
+    info : function(){
+        var zhiboId = Router.current().params['zhiboId'];
+        var query = {
+            _id : zhiboId
+        };
+
+        return DB.ZhiBo.findOne(query);
     }
 });
 
