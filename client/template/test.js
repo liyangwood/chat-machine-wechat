@@ -6,7 +6,7 @@ var F = {
     addVideo : function(src){
         var xx = $('#js_video');
         if(xx.length < 1){
-            $('body').append('<video id="js_video" control autoplay></video>');
+            $('body').append('<video id="js_video" controls></video>');
 
             xx = $('#js_video');
         }

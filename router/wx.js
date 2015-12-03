@@ -158,7 +158,9 @@ if(Meteor.isServer){
             wx.getMessageVideo(id, function(buffer){
 
                 Image.saveChatVideo(id, buffer, function(err, file){
+                    console.log(file);
                     Meteor.setTimeout(function(){
+
                         self.response.end(fs.readFileSync(path));
                     }, 1000);
                 });
@@ -192,7 +194,7 @@ Router.route('testImageGet', {
 }).get(function(){
     var self = this;
 
-    var id = 'a';
+    var id = 'bb';
     var path = KG.config.pwd+'/temp/weixinlogimage/'+id+'.mp4';
 
     try{

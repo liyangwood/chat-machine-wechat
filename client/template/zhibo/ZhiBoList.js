@@ -3,13 +3,19 @@ var F = {
     addVideo : function(src){
         var xx = $('#js_video');
         if(xx.length < 1){
-            $('body').append('<video id="js_video" control autoplay></video>');
+            $('body').append('<div id="js_video"><video controls></video></div>');
 
             xx = $('#js_video');
+
+            xx.click(function(e){
+                $('#js_video').hide();
+            });
         }
 
-        xx.attr('src', src);
-        xx[0].play();
+        xx = xx.show().find('video');
+
+        xx.empty().append('<source src="'+src+'" type="video/mp4" />');
+        //xx[0].play();
     },
     addAudio : function(src){
         var xx = $('#js_audio');
@@ -17,6 +23,7 @@ var F = {
             $('body').append('<audio id="js_audio" autoplay></audio>');
 
             xx = $('#js_audio');
+
         }
 
         xx.empty().append('<source src="'+src+'" type="audio/mpeg" />');
@@ -87,7 +94,7 @@ Template.ZhiBoMessageList.events({
 
     },
 
-    'click .js_videoplay' : function(e){
+    'mousedown .js_videoplay' : function(e){
         var id = $(e.target).closest('.js_videoplay').attr('video-id');
         var url = '/weixin/log/video?id='+id;
         console.log(url);
