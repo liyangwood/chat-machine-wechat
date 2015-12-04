@@ -1,0 +1,63 @@
+<template name="ZhiBoIndex">
+
+    <div class="container kg-zhibo-index">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="frame">
+                    <ul class="nav nav-tabs" role="tablist" id="navtab">
+                        <li class="nav-item active">
+                            <a href="#live-finish" class="nav-link" role="tab" data-toggle="tab">直播完成</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#live-occur" class="nav-link" role="tab" data-toggle="tab">正在直播</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#live-trailer" class="nav-link" role="tab" data-toggle="tab">直播预告</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="tabcontent">
+                        <div role="tabpanel" class="tab-pane fade in active" id="live-finish">
+                            <div class="list-group">
+
+                                {{#each list}}
+                                    <a href="{{pathFor 'ZhiBoMessageList' zhiboId=_id}}" class="list-group-item">
+                                        <!--<span class="label label-default label-pill pull-right" title="观看">83</span>-->
+                                        <h4 class="list-group-item-heading">{{title}}</h4>
+                                        <p class="list-group-item-text">{{description}}</p>
+                                        <!--<p class="list-group-item-text text-muted" title="结束">2015年12月5日 01:59</p>-->
+                                    </a>
+                                {{/each}}
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="live-occur">
+                            <div class="list-group">
+
+                                <a href="" class="list-group-item">
+                                    <h4 class="list-group-item-heading">暂无直播</h4>
+
+                                </a>
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="live-trailer">
+                            <div class="list-group">
+
+                                <a href="" class="list-group-item">
+                                    <h4 class="list-group-item-heading">暂无直播</h4>
+
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</template>

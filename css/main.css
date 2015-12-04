@@ -13,8 +13,11 @@ body {
     height: 80%;
     margin-top: 10%; }
 
-.active {
+.kg-active {
   background: red !important; }
+
+.full-container {
+  width: 100%; }
 
 .container {
   max-width: 960px; }
@@ -344,6 +347,25 @@ body {
 
 .emo-104 {
   background-position: -409px -177px; }
+
+.kg-zhibo-index .nav-tabs .nav-item {
+  float: left;
+  margin-bottom: -1px; }
+  .kg-zhibo-index .nav-tabs .nav-item a {
+    font-size: 14px; }
+.kg-zhibo-index .tab-content {
+  min-height: 50px; }
+  .kg-zhibo-index .tab-content .list-group-item {
+    border-top: none;
+    margin-bottom: 0;
+    padding-top: 12px;
+    padding-bottom: 12px; }
+    .kg-zhibo-index .tab-content .list-group-item h4 {
+      font-size: 20px; }
+    .kg-zhibo-index .tab-content .list-group-item p {
+      color: #989898; }
+  .kg-zhibo-index .tab-content .list-group-item:first-child {
+    border-radius: 0; }
 
 /* common end */
 .kg-zhibo-list-info {

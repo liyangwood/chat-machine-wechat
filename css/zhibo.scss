@@ -1,0 +1,39 @@
+
+.kg-zhibo-index{
+	.nav-tabs{
+
+		.nav-item{
+			float: left;
+			margin-bottom: -1px;
+
+			a{
+				font-size: 14px;
+			}
+		}
+	}
+
+	.tab-content{
+		min-height: 50px;
+
+
+		.list-group-item{
+			border-top: none;
+			margin-bottom: 0;
+			padding-top: 12px;
+			padding-bottom: 12px;
+
+			h4{
+				font-size: 20px;
+			}
+			
+			p{
+				color: #989898;
+			}
+		}
+		.list-group-item:first-child{
+			border-radius: 0;
+		}
+	}
+}
+
+

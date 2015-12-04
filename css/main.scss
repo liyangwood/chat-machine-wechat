@@ -17,17 +17,23 @@ body{
 	}
 }
 
-.active{
+.kg-active{
 	background: red !important;
 }
 
+.full-container{
+	width: 100%;
+}
 .container{
 	max-width: 960px;
 }
 
 
 
+$border-color:#ddd;
+
 @import "emote";
+@import "zhibo";
 
 /* common end */
 
