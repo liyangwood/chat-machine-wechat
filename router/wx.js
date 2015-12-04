@@ -17,10 +17,39 @@ if(Meteor.isServer){
                 status : status?1:-1,
                 data : data
             });
+        },
+
+        sendVideoFile : function(file, req, res){
+            if(!fs.existsSync(file)) throw 'file is not exist';
+
+            var range = req.headers.range;
+            var positions = range.replace(/bytes=/, "").split("-");
+            var start = parseInt(positions[0], 10);
+
+            fs.stat(file, function(err, stats) {
+                var total = stats.size;
+                var end = positions[1] ? parseInt(positions[1], 10) : total - 1;
+                var chunksize = (end - start) + 1;
+
+                res.writeHead(206, {
+                    "Content-Range": "bytes " + start + "-" + end + "/" + total,
+                    "Accept-Ranges": "bytes",
+                    "Content-Length": chunksize,
+                    "Content-Type": "video/mp4"
+                });
+
+                var stream = fs.createReadStream(file, { start: start, end: end })
+                    .on("open", function() {
+                        stream.pipe(res);
+                    }).on("error", function(err) {
+                        res.end(err);
+                    });
+            });
         }
     };
 
 
+    //获得登录二维码
     Router.route('weixinPage', {
         where : 'server',
         path : '/wxapi/login/qr'
@@ -32,6 +61,14 @@ if(Meteor.isServer){
             }));
         });
 
+    });
+
+    Router.route('weixinLoginState', {
+        where : 'server',
+        path : '/wxapi/login/state'
+    }).get(function(){
+        var self = this;
+        self.response.end(F.result(true, wx.config.loginState));
     });
 
 
@@ -151,17 +188,21 @@ if(Meteor.isServer){
 
         var path = KG.config.pwd+'/temp/weixinlogimage/'+id+'.mp4';
 
+        var req = self.request,
+            res = self.response;
+
         try{
-            self.response.end(fs.readFileSync(path));
+            F.sendVideoFile(path, req, res);
         }
         catch(e){
+
             wx.getMessageVideo(id, function(buffer){
 
                 Image.saveChatVideo(id, buffer, function(err, file){
-                    console.log(file);
                     Meteor.setTimeout(function(){
 
-                        self.response.end(fs.readFileSync(path));
+                        F.sendVideoFile(path, req, res);
+
                     }, 1000);
                 });
 
@@ -176,12 +217,14 @@ if(Meteor.isServer){
         path : '/wx/group/getlist'
     }).get(function(){
         var group = wx.getGroupList();
-        var friend = wx.getFriendList();
+        var friend = wx.getFriendList(),
+            user = wx.getCurrentUser();
 
-        this.response.end(F.result(true, [group, friend]));
+        this.response.end(F.result(true, [group, friend, user, wx.config]));
     });
 
 }
+
 
 
 
@@ -197,17 +240,21 @@ Router.route('testImageGet', {
     var id = 'bb';
     var path = KG.config.pwd+'/temp/weixinlogimage/'+id+'.mp4';
 
+    var req = self.request,
+        res = self.response;
+
     try{
-        self.response.end(fs.readFileSync(path));
+        F.sendVideoFile(path, req, res);
     }
     catch(e){
 
         wx.getTestImage(id, function(buffer){
 
             Image.saveChatVideo(id, buffer, function(err, file){
-                console.log(file);
                 Meteor.setTimeout(function(){
-                    self.response.end(fs.readFileSync(path));
+
+                    F.sendVideoFile(path, req, res);
+
                 }, 1000);
             });
 

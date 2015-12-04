@@ -54,8 +54,13 @@ Template.registerHelper('calculateT34Second', function(len){
 Template.ZhiBoMessageList.helpers({
     list : function(){
         var zhiboId = Router.current().params['zhiboId'];
+        var name = DB.ZhiBo.findOne({
+            _id : zhiboId
+        }).qunName;
+
+
         var query = {
-            _zhiboId : zhiboId
+            GroupName : name
         };
         var sort = {
             CreateTime : -1

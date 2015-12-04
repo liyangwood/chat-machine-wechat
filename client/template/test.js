@@ -1,5 +1,11 @@
 Template.test.helpers({
-
+    loginState : function(){
+        var rs = Session.get('loginState');
+        if(rs){
+            return JSON.stringify(rs);
+        }
+        return '';
+    }
 });
 
 var F = {
@@ -13,6 +19,29 @@ var F = {
 
         xx.attr('src', src);
         xx[0].play();
+    },
+
+
+    checkLoginState : function(){
+        util.ajax({
+            url : '/wxapi/login/state',
+            type : 'get',
+            dataType : 'json',
+            data : {},
+            success : function(flag, rs){
+                Session.set('loginState', rs);
+
+                if(rs.userAvatar){
+                    $('#js_img').attr('src', rs.userAvatar);
+                }
+
+                if(rs.code && rs.code === 200){
+                    return;
+                }
+
+                util.delay(F.checkLoginState, 2000);
+            }
+        });
     }
 };
 
@@ -28,7 +57,9 @@ Template.test.events({
             data : data,
             success : function(flag, rs){
                 console.log(rs);
-                $('body').append('<img src="'+rs.url+'" />');
+                $('#js_img').attr('src', rs.url).show();
+
+                util.delay(F.checkLoginState, 2000);
             }
         });
     },
