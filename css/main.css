@@ -1,3 +1,7 @@
+@charset "UTF-8";
+* {
+  font-family: '微软雅黑',sans-serif, Arial, Verdana, "Trebuchet MS"; }
+
 body {
   background: #eeeeee; }
 
@@ -367,13 +371,33 @@ body {
   .kg-zhibo-index .tab-content .list-group-item:first-child {
     border-radius: 0; }
 
-/* common end */
+.kg-zhibo-add .row {
+  margin: 20px 0 10px; }
+  .kg-zhibo-add .row label {
+    padding-left: 15px; }
+  .kg-zhibo-add .row .require:after {
+    content: '*';
+    color: #f00;
+    position: relative;
+    top: 2px;
+    left: 5px; }
+  .kg-zhibo-add .row div.col-sm-8 {
+    padding-right: 15px; }
+.kg-zhibo-add .cke_bottom {
+  display: none; }
+
 .kg-zhibo-list-info {
-  background: #fffe91; }
+  background-color: #dff0d8;
+  border-color: #d0e9c6; }
+  .kg-zhibo-list-info .row {
+    margin: 30px 0 20px; }
   .kg-zhibo-list-info .col {
     text-align: left;
-    font-size: 16px;
-    color: #111; }
+    color: #3c763d;
+    padding: 0; }
+  .kg-zhibo-list-info .col-md-2 {
+    font-size: 20px;
+    color: #2c763d; }
 
 .kg-zhibo-list {
   background: #eee; }
@@ -417,5 +441,7 @@ body {
     color: #666;
     position: relative;
     left: 5px; }
+
+/* common end */
 
 /*# sourceMappingURL=main.css.map */

@@ -17,15 +17,16 @@ var F = {
         xx.empty().append('<source src="'+src+'" type="video/mp4" />');
         //xx[0].play();
     },
-    addAudio : function(src){
+
+    addAudio : function(src, endCallback){
         var xx = $('#js_audio');
         if(xx.length < 1){
             $('body').append('<audio id="js_audio" autoplay></audio>');
 
             xx = $('#js_audio');
-
         }
 
+        xx.unbind('ended').bind('ended', endCallback);
         xx.empty().append('<source src="'+src+'" type="audio/mpeg" />');
         xx[0].play();
     }
@@ -89,13 +90,19 @@ Template.ZhiBoMessageList.events({
         var url = '/weixin/log/voice?id='+id;
         console.log(url);
 
-        F.addAudio(url);
+        F.addAudio(url, function(){
+            elem.removeClass('kg-active');
 
-        elem.addClass('active');
+            //判断next sbiling 是否是t-34
+            var next = elem.parents('[role-type]').next('[role-type="34"]');
+            //console.log(elem.parents('[role-type]'), next);
+            if(next.length === 1){
+                next.find('.js_voice').trigger('click');
+            }
+        });
 
-        util.delay(function(){
-            elem.removeClass('active');
-        }, len*1000);
+        elem.addClass('kg-active');
+
 
     },
 

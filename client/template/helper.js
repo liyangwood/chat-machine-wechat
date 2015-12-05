@@ -25,3 +25,7 @@ Template.registerHelper('formatEmote', function(text){
 
     return text;
 });
+
+Template.registerHelper('decode', function(html){
+    return decodeURIComponent(html);
+});

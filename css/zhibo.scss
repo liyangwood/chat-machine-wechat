@@ -37,3 +37,114 @@
 }
 
 
+.kg-zhibo-add{
+	.row{
+		margin: 20px 0 10px;
+
+		label{
+			padding-left: 15px;
+		}
+
+		.require:after{
+			content : '*';
+			color: #f00;
+			position: relative;
+			top: 2px;
+			left: 5px;
+		}
+
+		div.col-sm-8{
+			padding-right: 15px;
+		}
+	}
+
+	.cke_bottom{
+		display: none;
+	}
+}
+
+.kg-zhibo-list-info{
+
+	background-color: #dff0d8;
+	border-color: #d0e9c6;
+
+	.row{
+		margin: 30px 0 20px;
+	}
+
+	.col{
+		text-align: left;
+		color: #3c763d;
+		padding: 0;
+	}
+
+	.col-md-2{
+		font-size: 20px;
+		color: #2c763d;
+	}
+
+
+}
+
+.kg-zhibo-list{
+	background: #eee;
+
+	.list-group-item{
+		background: transparent;
+	}
+
+	.txt{
+		white-space: normal;
+		word-break:break-all;
+		display: inline-block;
+		background: #ffffff;
+		padding: 8px 10px;
+		position: relative;
+		border-radius: 4px;
+		color: #111;
+		line-height: 22px;
+
+		em{
+			display: block;
+			position: absolute;
+			width: 0;
+			height: 0;
+			border: 8px solid;
+			border-color: transparent #ffffff transparent transparent;
+			top: 5px;
+			left: -16px;
+		}
+	}
+
+
+
+	.t-34{
+
+		.box{
+			padding: 7px 13px;
+			width: 150px;
+			max-width: 300px;
+			cursor: pointer;
+			position: relative;
+			background: #ffffff;
+			display: inline-block;
+
+		}
+
+
+		.icon{
+			background: url('/image/weixinicon.png') 0 -2427px;
+			width: 23px;
+			height: 23px;
+			vertical-align: middle;
+			display: inline-block;
+		}
+		span{
+			font-size: 14px;
+			color: #666;
+			position: relative;
+			left: 5px;
+		}
+	}
+}
+

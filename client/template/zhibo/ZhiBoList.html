@@ -1,37 +1,36 @@
 <template name="ZhiBoList">
 
-    <div class="container">
-        <div class="list-group">
+    <!--<div class="container">-->
+        <!--<div class="list-group">-->
 
-            {{#each list}}
-            <a href="{{pathFor 'ZhiBoMessageList' zhiboId=_id}}" class="list-group-item">
-                <h4 class="list-group-item-heading">{{title}}</h4>
-                <p class="list-group-item-text">{{description}}</p>
-            </a>
-            {{/each}}
+            <!--{{#each list}}-->
+            <!--<a href="{{pathFor 'ZhiBoMessageList' zhiboId=_id}}" class="list-group-item">-->
+                <!--<h4 class="list-group-item-heading">{{title}}</h4>-->
+                <!--<p class="list-group-item-text">{{description}}</p>-->
+            <!--</a>-->
+            <!--{{/each}}-->
 
-        </div>
-    </div>
-
+        <!--</div>-->
+    <!--</div>-->
 
 </template>
 
 
 <template name="ZhiBoMessageList">
 
-    <div class="jumbotron kg-zhibo-list-info">
+    <div class="full-container kg-zhibo-list-info">
         <div class="container">
             <div class="row">
-                <div class="col col-xs-2">标题</div>
-                <div class="col col-xs-10">{{info.title}}</div>
+                <div class="col col-md-2">标题:</div>
+                <div class="col col-md-10">{{info.title}}</div>
             </div>
             <div class="row">
-                <div class="col col-xs-2">状态</div>
-                <div class="col col-xs-10">进行中</div>
+                <div class="col col-md-2">状态:</div>
+                <div class="col col-md-10">进行中</div>
             </div>
             <div class="row">
-                <div class="col col-xs-2">描述</div>
-                <div class="col col-xs-10">{{info.description}}</div>
+                <div class="col col-md-2">描述:</div>
+                <div class="col col-md-10">{{{decode info.description}}}</div>
             </div>
         </div>
     </div>
@@ -39,7 +38,7 @@
     <div class="list-group kg-zhibo-list container">
 
         {{#each list}}
-        <div class="list-group-item" style="position: relative;padding-left: 70px;min-height: 85px;border: none;">
+        <div class="list-group-item" role-type="{{MsgType}}" style="position: relative;padding-left: 70px;min-height: 85px;border: none;">
             <img style="width: 40px;height: 40px;position: absolute;top: 10px;left: 15px;border-radius: 4px;" src="/weixin/user/headimage?id={{UserObject.UserName}}" />
             <h4 style="font-size: 14px;font-weight: 400;" class="list-group-item-heading">{{nickname}} <small style="">{{formatDate CreateTime}}</small></h4>
 

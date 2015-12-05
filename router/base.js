@@ -1,7 +1,7 @@
 
 
 
-Router.route('/', {
+Router.route('/admin/index', {
     name: 'test',
     loadingTemplate : 'loading',
     waitOn : function(){
@@ -25,12 +25,12 @@ Router.route('/', {
 var setOption = function(opts){
     var rs = _.extend({
         layoutTemplate : 'ZhiBoLayout',
-        loadingTemplate : 'loading',
+        loadingTemplate : 'loading'
         //name : '',
         //action : null,
-        waitOn : function(){
-            return true;
-        }
+        //waitOn : function(){
+        //    return true;
+        //}
     }, opts);
 
     return rs;
@@ -47,10 +47,9 @@ Router.route('/qun/index', setOption({
     }
 }));
 
-
-Router.route('/qun/add', {
+Router.route('/qun/add', setOption({
     name : 'AddZhiBo'
-});
+}));
 
 Router.route('/qun/list', {
     name : 'ZhiBoList',

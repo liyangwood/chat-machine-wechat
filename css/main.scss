@@ -1,3 +1,7 @@
+*{
+	font-family: '微软雅黑',sans-serif, Arial, Verdana, "Trebuchet MS";
+}
+
 body{
 	background: #eeeeee;
 }
@@ -39,76 +43,6 @@ $border-color:#ddd;
 
 
 
-.kg-zhibo-list-info{
-	background: #fffe91;
-	
-	.col{
-		text-align: left;
-		font-size: 16px;
-		color: #111;
-	}
-}
 
-.kg-zhibo-list{
-	background: #eee;
-
-	.list-group-item{
-		background: transparent;
-	}
-
-	.txt{
-		white-space: normal;
-		word-break:break-all;
-		display: inline-block;
-		background: #ffffff;
-		padding: 8px 10px;
-		position: relative;
-		border-radius: 4px;
-		color: #111;
-		line-height: 22px;
-
-		em{
-			display: block;
-			position: absolute;
-			width: 0;
-			height: 0;
-			border: 8px solid;
-			border-color: transparent #ffffff transparent transparent;
-			top: 5px;
-			left: -16px;
-		}
-	}
-
-
-
-	.t-34{
-
-		.box{
-			padding: 7px 13px;
-			width: 150px;
-			max-width: 300px;
-			cursor: pointer;
-			position: relative;
-			background: #ffffff;
-			display: inline-block;
-
-		}
-
-
-		.icon{
-			background: url('/image/weixinicon.png') 0 -2427px;
-			width: 23px;
-			height: 23px;
-			vertical-align: middle;
-			display: inline-block;
-		}
-		span{
-			font-size: 14px;
-			color: #666;
-			position: relative;
-			left: 5px;
-		}
-	}
-}
 
 
