@@ -71,6 +71,16 @@
 
                 </p>
             {{/if}}
+            {{#if equal MsgType 49}}
+                <div class="list-group-item-text txt t-49">
+                    <em></em>
+                    <div>
+                        <img src="/weixin/log/image?id={{MsgId}}" style="width: 40px;height: 40px;" />
+                        <a target="_blank" href="{{Url}}">{{FileName}}</a>
+                    </div>
+
+                </div>
+            {{/if}}
 
         </div>
         {{/each}}
