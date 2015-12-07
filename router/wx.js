@@ -109,6 +109,7 @@ if(Meteor.isServer){
             self.response.end(fs.readFileSync(path));
         }
         catch(e){
+
             wx.getMessageImage(id, function(buffer){
 
                 Image.saveChatImage(id, buffer, function(err, file){
@@ -118,7 +119,7 @@ if(Meteor.isServer){
                     }, 1000);
                 });
 
-            });
+            }, query.type === 'big');
         }
 
     });
