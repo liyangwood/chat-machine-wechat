@@ -102,5 +102,18 @@ Template.AdminGroupRole.events({
 Template.AdminGroupRoleDefine.onCreated(function(){
     var name = Router.current().params['name'];
 
+    util.ajax({
+        url : '/wx/group/getlist',
+        type : 'get',
+        dataType : 'json',
+        data : {},
+        success : function(flag, rs){
+            var tmp = util.find(rs[0], function(item){
+                return item.NickName === name;
+            });
+            Session.set(MEMBERKEY, tmp);
+        }
+    });
+
     Session.set(QunName, name);
 });

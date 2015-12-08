@@ -43,7 +43,7 @@
 
             <tr>
                 <th>HeadImage</th>
-                <th>UserName</th>
+                <!--<th>UserName</th>-->
                 <th>NickName</th>
                 <th>DisplayName</th>
             </tr>
@@ -51,7 +51,7 @@
             {{#each list}}
                 <tr>
                     <td><img style="width: 40px;height: 40px;" src="/weixin/user/headimage?id={{UserName}}" /></td>
-                    <td>{{UserName}}</td>
+                    <!--<td>{{UserName}}</td>-->
                     <td>{{NickName}}</td>
                     <td>{{DisplayName}}</td>
                 </tr>
@@ -130,5 +130,6 @@
 
 
 <template name="AdminGroupRoleDefine">
+    {{> AdminGroupMemberList}}
     {{> AdminGroupRole}}
 </template>
