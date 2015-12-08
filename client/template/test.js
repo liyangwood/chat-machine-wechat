@@ -5,7 +5,23 @@ Template.test.helpers({
             return JSON.stringify(rs);
         }
         return '';
+    },
+    list : function(){
+        return Session.get('admin-listdata');
     }
+});
+
+Template.test.onCreated(function(){
+    var self = this;
+    Meteor.http.get('/wx/group/getlist', function(err, res){
+        if(res.statusCode > 199){
+            var json = JSON.parse(res.content);
+
+            if(json.data){
+                Session.set('admin-listdata', json.data[0]);
+            }
+        }
+    });
 });
 
 var F = {

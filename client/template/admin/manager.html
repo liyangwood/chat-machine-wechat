@@ -1,0 +1,134 @@
+<template name="AdminGroupList">
+
+    <div class="container">
+        <style>
+            .kg-admin-list th, .kg-admin-list td{
+                border: 1px solid #a1a1a1;
+                padding: 4px 8px;
+            }
+        </style>
+
+        <table class="kg-admin-list" style="border: 1px solid #dddddd;">
+
+            <tr>
+                <th>UserName</th>
+                <th>NickName</th>
+                <th>Member Count</th>
+            </tr>
+
+            {{#if list}}
+            {{#each list}}
+            <tr class="js_ck" param="{{UserName}}">
+
+                <td>{{UserName}}</td>
+                <td>{{NickName}}</td>
+                <td>{{MemberCount}}</td>
+
+            </tr>
+            {{/each}}
+            {{/if}}
+
+        </table>
+    </div>
+
+    {{> AdminGroupMemberList}}
+    {{> AdminGroupRole}}
+
+</template>
+
+<template name="AdminGroupMemberList">
+    <div class="container">
+
+        <table class="kg-admin-list" style="margin-top: 30px;">
+
+            <tr>
+                <th>HeadImage</th>
+                <th>UserName</th>
+                <th>NickName</th>
+                <th>DisplayName</th>
+            </tr>
+
+            {{#each list}}
+                <tr>
+                    <td><img style="width: 40px;height: 40px;" src="/weixin/user/headimage?id={{UserName}}" /></td>
+                    <td>{{UserName}}</td>
+                    <td>{{NickName}}</td>
+                    <td>{{DisplayName}}</td>
+                </tr>
+            {{/each}}
+
+
+
+        </table>
+    </div>
+</template>
+
+<template name="AdminGroupRole">
+    <div class="container">
+        <style>
+            .kg-admin-list th, .kg-admin-list td{
+                border: 1px solid #a1a1a1;
+                padding: 4px 8px;
+            }
+        </style>
+
+        <div class="panel panel-success" style="margin-top: 20px;">
+            <div class="panel-heading">{{QunName}}</div>
+            <div class="panel-body">
+                <table class="kg-admin-list" style="">
+                    <tr>
+                        <th>Key</th>
+                        <th>Reply</th>
+                        <!--<th>CreateTime</th>-->
+                        <th>Action</th>
+                    </tr>
+                    {{#each list}}
+                        <tr>
+                            <td>{{key}}</td>
+                            <td style="word-break: break-all;">{{result}}</td>
+                            <!--<td>{{formatDate createTime}}</td>-->
+                            <td><button class="btn btn-danger js_del" param="{{_id}}">Delete</button></td>
+                        </tr>
+                    {{/each}}
+
+                </table>
+            </div>
+        </div>
+
+
+        <div class="kg-zhibo-add">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-size: 20px;">添加规则</div>
+                <div class="panle-body" style="padding: 20px 0;">
+                    <form class="js_form">
+                        <div class="row">
+                            <label class="col-sm-2 control-label require">关键字</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control js_key" placeholder="">
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <label class="col-sm-2 control-label require">回复</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control js_textarea" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                        <button style="margin-top: 40px;float: right;" data-loading-text="正在提交..." type="button" class="js_btn1 btn btn-primary">提交</button>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="AdminGroupRoleDefine">
+    {{> AdminGroupRole}}
+</template>

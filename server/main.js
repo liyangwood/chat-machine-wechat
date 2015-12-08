@@ -5,9 +5,4 @@ WebApp.connectHandlers.use(function(req, res, next) {
 });
 
 
-Meteor.publish('BaseMessage', function() {
-    return BaseMessage.find({}, {
-        limit : 100
-    });
-});
 

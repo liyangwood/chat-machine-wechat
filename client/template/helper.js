@@ -29,3 +29,7 @@ Template.registerHelper('formatEmote', function(text){
 Template.registerHelper('decode', function(html){
     return decodeURIComponent(html);
 });
+
+Template.registerHelper('toJSON', function(json){
+    return JSON.stringify(json);
+});

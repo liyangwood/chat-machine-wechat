@@ -8,7 +8,18 @@ Router.route('/admin/index', {
         //return Meteor.subscribe('BaseMessage');
     }
 });
+Router.route('/admin/group/list', {
+    name: 'AdminGroupList',
+    loadingTemplate : 'loading'
+});
 
+Router.route('/admin/group/role/:name', {
+    name : 'AdminGroupRoleDefine',
+    loadingTemplate : 'loading',
+    waitOn : function(){
+        return Meteor.subscribe('QunAdminCommonRole');
+    }
+});
 
 
 //Router.route('/group/message/list', {
