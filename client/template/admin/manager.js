@@ -1,6 +1,7 @@
 var LISTKEY = 'AdminGroupList-data',
     MEMBERKEY = 'AdminGroupMemberList-data';
 var QunName = 'AdminGroupName-data';
+var CurrentUser = 'AdminGroup-CurrentUser-data';
 
 Template.AdminGroupList.onCreated(function(){
     util.ajax({
@@ -50,7 +51,10 @@ Template.AdminGroupMemberList.helpers({
 Template.AdminGroupRole.helpers({
     list : function(){
         var name = Session.get(QunName) || 'TestRole';
-        return DB.QunAdminCommonRole.find({GroupName:name}, {
+        return DB.QunAdminCommonRole.find({
+            GroupName:name,
+            type : 1
+        }, {
             sort : {
                 createTime : -1
             }
@@ -58,6 +62,13 @@ Template.AdminGroupRole.helpers({
     },
     QunName : function(){
         return Session.get(QunName) || 'TestRole';
+    },
+    welcomeRole : function(){
+        var name = Session.get(QunName) || 'TestRole';
+        return DB.QunAdminCommonRole.findOne({
+            GroupName : name,
+            type : 10000
+        });
     }
 });
 
@@ -79,6 +90,7 @@ Template.AdminGroupRole.events({
             GroupName : qunName || 'TestRole',
             key : key,
             result : txt,
+            type : 1,
             createTime : Date.now()
         };
         o.button('loading');
@@ -89,6 +101,54 @@ Template.AdminGroupRole.events({
             $('.js_key').val('');
             $('.js_textarea').val('');
         });
+
+
+    },
+
+    'click .js_btn2' : function(e){
+        var qunName = Session.get(QunName);
+
+        var txt = $('.js_textarea1').val();
+        if(!txt){
+            alert('wrong');
+            return;
+        }
+
+        var o = $(e.currentTarget);
+
+        var data = {
+            GroupName : qunName || 'TestRole',
+            key : 'Welcome',
+            result : txt,
+            type : 10000,
+            createTime : Date.now()
+        };
+        o.button('loading');
+
+        var tmp = DB.QunAdminCommonRole.findOne({
+            GroupName : qunName,
+            type : 10000
+        });
+
+
+        if(tmp){
+            DB.QunAdminCommonRole.update({
+                _id : tmp._id
+            }, {
+                $set : data
+            }, function(err, rs){
+                o.button('reset');
+
+                $('.js_textarea1').val('');
+            });
+        }
+        else{
+            DB.QunAdminCommonRole.insert(data, function(err, rs){
+                o.button('reset');
+
+                $('.js_textarea1').val('');
+            });
+        }
 
 
     },
@@ -112,8 +172,48 @@ Template.AdminGroupRoleDefine.onCreated(function(){
                 return item.NickName === name;
             });
             Session.set(MEMBERKEY, tmp);
+
+            Session.set('TempQunData', tmp);
+            Session.set(CurrentUser, rs[2]);
         }
     });
 
     Session.set(QunName, name);
+});
+
+Template.AdminGroupRoleDefine.events({
+    'click .js_btn3' : function(e){
+
+        var from = Session.get(CurrentUser).UserName,
+            to = Session.get('TempQunData').UserName;
+        var msg = $('.js_msg').val();
+
+        if(!msg){
+            alert('wrong');
+            return;
+        }
+
+        var data = {
+            type : 1,
+            FromUserName : from,
+            ToUserName : to,
+            Content : msg
+        };
+
+        var o = $(e.currentTarget);
+        o.button('loading');
+        util.ajax({
+            url : '/wx/log/send',
+            type : 'post',
+            data : data,
+            dataType : 'json',
+            success : function(flag, rs){
+                console.log(flag, rs);
+
+                $('.js_msg').val('');
+
+                o.button('reset');
+            }
+        })
+    }
 });

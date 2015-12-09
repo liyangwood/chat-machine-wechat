@@ -224,6 +224,18 @@ if(Meteor.isServer){
         this.response.end(F.result(true, [group, friend, user, wx.config]));
     });
 
+
+    Router.route('sendChatMessage', {
+        where : 'server',
+        path : '/wx/log/send'
+    }).post(function(){
+        var self = this;
+        var query = this.request.body;
+        wx.sendMessage(query, function(err, rs){
+            self.response.end(F.result(err?false:true, rs));
+        });
+    });
+
 }
 
 

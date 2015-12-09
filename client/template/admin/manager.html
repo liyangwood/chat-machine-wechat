@@ -37,7 +37,7 @@
 </template>
 
 <template name="AdminGroupMemberList">
-    <div class="container">
+    <div class="container" style="padding-bottom: 50px;">
 
         <table class="kg-admin-list" style="margin-top: 30px;">
 
@@ -117,7 +117,46 @@
                             </div>
                         </div>
 
-                        <button style="margin-top: 40px;float: right;" data-loading-text="正在提交..." type="button" class="js_btn1 btn btn-primary">提交</button>
+                        <a style="margin: 30px auto 10px;display: block;width: 120px;" data-loading-text="正在提交..." type="button" class="js_btn1 btn btn-primary">提交</a>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="kg-zhibo-add">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-size: 20px;">新入群的欢迎信息</div>
+                <div class="panle-body" style="padding: 20px 15px;">
+
+                    <table class="kg-admin-list" style="width: 100%;">
+                        <tr>
+                            <th>Info</th>
+                            <th>Action</th>
+                        </tr>
+                        {{#with welcomeRole}}
+                            <tr>
+                                <td style="word-break: break-all;">{{result}}</td>
+                                <td><button class="btn btn-danger js_del" param="{{_id}}">Delete</button></td>
+                            </tr>
+                        {{/with}}
+
+                    </table>
+
+                    <form class="js_form">
+
+                        <div class="row">
+                            <label class="col-sm-2 control-label require">信息</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control js_textarea1" placeholder="只有一条，如果已经存在会自动替换, {NewUser}可以自动替换为新加入的群成员"></textarea>
+                            </div>
+                        </div>
+
+                        <a style="margin: 30px auto 10px;display: block;width: 120px;" data-loading-text="正在提交..." type="button" class="js_btn2 btn btn-primary">提交</a>
 
 
                     </form>
@@ -132,4 +171,30 @@
 <template name="AdminGroupRoleDefine">
     {{> AdminGroupMemberList}}
     {{> AdminGroupRole}}
+
+    <div class="container">
+        <div class="kg-zhibo-add">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-size: 20px;">发送即时信息</div>
+                <div class="panle-body" style="padding: 20px 15px;">
+
+                    <form class="js_form">
+
+                        <div class="row">
+                            <label class="col-sm-2 control-label require">信息</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control js_msg" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                        <a style="margin: 30px auto 10px;display: block;width: 120px;" data-loading-text="正在提交..." type="button" class="js_btn3 btn btn-primary">发送</a>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </template>
