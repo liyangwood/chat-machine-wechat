@@ -1,0 +1,5 @@
+
+此部分以后应该放到另外一个project中，保证机器人程序的稳定性
+Admin和user interface都应该通过api方式和本程序产生交互
+
+version 1 先放在一起。
