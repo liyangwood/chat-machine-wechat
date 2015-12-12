@@ -51,6 +51,9 @@ Template.registerHelper('calculateT34Width', function(len){
 Template.registerHelper('calculateT34Second', function(len){
     return Math.ceil(len/1000);
 });
+Template.registerHelper('filterInZhiboList', function(type){
+    return util.contains([1, 3, 34, 43, 49], type);
+});
 
 Template.ZhiBoMessageList.helpers({
     list : function(){
