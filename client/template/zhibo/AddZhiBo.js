@@ -65,8 +65,9 @@ Template.AddZhiBo.events({
 
     'click .js_btn1' : function(){
         var title = $('.js_title').val(),
-            name = $('.js_qun').val(),
-            info = F.ck.getData();
+            name = $('.js_qun').val();
+            //info = F.ck.getData();
+        var info = '';
 
         DB.ZhiBo.insert({
             title : title,
