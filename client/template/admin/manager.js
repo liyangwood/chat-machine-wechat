@@ -45,6 +45,11 @@ Template.AdminGroupMemberList.helpers({
             return rs['MemberList'];
         }
         return [];
+    },
+    info : function(){
+        return {
+            qunName : Session.get(QunName)
+        };
     }
 });
 

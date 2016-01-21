@@ -140,7 +140,61 @@ if(Meteor.isServer){
         catch(e){
             wx.getHeadImage(id, function(buffer){
 
+                if(buffer.length < 10){
+                    self.response.end('\n');
+                    return false;
+                }
+
                 Image.saveHeadImage(id, buffer, function(err, file){
+                    Meteor.setTimeout(function(){
+                        self.response.end(fs.readFileSync(path));
+                    }, 1000);
+                });
+
+            });
+
+            //self.response.end('\n');
+        }
+    });
+
+    //这个需要传递群名称和用户昵称，根据这个匹配头像图片
+    Router.route('getHeadImage1', {
+        where : 'server',
+        path : '/weixin/user/headimage1'
+    }).get(function(){
+        var self = this;
+        var query = self.request.query,
+            id = query.id,
+            nickname = decodeURIComponent(query.nickname);
+        var qun = decodeURIComponent(query.qun);
+
+        nickname = KG.util.stripTags(nickname);
+        qun = KG.util.stripTags(qun);
+
+        var root = KG.config.pwd+'/temp/headimage/';
+        var path = root+qun+'_'+nickname+'.png';
+        var ix = fs.existsSync(path);
+        if(ix){
+            self.response.end(fs.readFileSync(path));
+            return;
+        }
+
+        var name = wx.getHeadImagePathNameById(id);
+
+        path = root+qun+'_'+name+'.png';
+
+        try{
+            self.response.end(fs.readFileSync(path));
+        }
+        catch(e){
+            wx.getHeadImage(id, function(buffer){
+
+                if(buffer.length < 10){
+                    self.response.end('\n');
+                    return false;
+                }
+
+                Image.saveHeadImage(qun+'_'+name, buffer, function(err, file){
                     Meteor.setTimeout(function(){
                         self.response.end(fs.readFileSync(path));
                     }, 1000);
