@@ -2,5 +2,6 @@
 
 .idea
 nohup.out
+nohup.log
 temp
 css/.sass-cache
